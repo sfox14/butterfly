@@ -147,7 +147,7 @@ class Butterfly(nn.Module):
             out_size = self.out_size
         batch = output.shape[0]
         output = output.view(batch, self.nstacks * output.size(-1))
-        out_size_extended = 1 << (int(math.ceil(math.log2(out_size))))
+        out_size_extended = 1 << (int(math.ceil(math.log2(output.size(-1))))) #out_size))))
         if out_size != out_size_extended:  # Take top rows
             output = output[:, :out_size]
         if self.bias is not None:
